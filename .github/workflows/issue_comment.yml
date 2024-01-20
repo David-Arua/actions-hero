@@ -11,3 +11,14 @@ jobs:
     - name: "dump github content"
       run: echo '${{toJSON(github.event)}}' | jq
       shell: bash
+    - name: Create comment
+      uses: peter-evans/create-or-update-comment@vi
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Hello world
+          This is a multiline comment
+          * One
+          * Two
+          * Three
+        reactions: '+1'
